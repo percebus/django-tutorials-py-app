@@ -14,9 +14,14 @@
     "prevenv:activate": "npm run npm:config:script-shell",
     "venv:activate": "source venv/Scripts/activate",
     "FIXMEvenv": "npm run venv:venv && npm run venv:activate",
-    "runserver:manage": "python webapp/manage.py runserver",
     "setup:ci": "npm run pip:install:all && npm run npm:install:global:ci",
     "setup": "npm run venv && npm run pip:install:all && npm run npm:install:global:all",
+    "flake8": "python -m flake8 webapp",
+    "dockerlint": "dockerlint Dockerfile",
+    "lint:py": "npm run flake8",
+    "lint:docker": "npm run dockerlint",
+    "lint": "npm run lint:py && npm run lint:docker",
+    "pretest": "npm run lint",
     "test": "exit 0",
     "docker:build": "docker build --no-cache --pull --tag hello-smart-on-fhir-django-py:latest .",
     "docker:images": "docker images --all | grep -a 'hello-smart-on-fhir-django-py'",
@@ -30,6 +35,8 @@
     "docker:containers:exited:rm": "docker ps --all --filter status=exited | tail -n +2 | awk '{print $1}' | xargs docker rm",
     "docker:containers:rm": "docker rm $(docker ps -a -q)",
     "docker:clean": "npm run docker:containers:stop && npm run docker:containers:exited:rm && npm run docker:images:rm",
+    "prerunserver:manage": "npm test",
+    "runserver:manage": "python webapp/manage.py runserver",
     "start": "npm run runserver:manage",
     "prestart:docker": "npm run docker:build",
     "start:docker": "npm run docker:run:default",
@@ -52,5 +59,8 @@
   "bugs": {
     "url": "https://github.com/percebus/hello-smart-on-fhir-django-py/issues"
   },
-  "homepage": "https://github.com/percebus/hello-smart-on-fhir-django-py#readme"
+  "homepage": "https://github.com/percebus/hello-smart-on-fhir-django-py#readme",
+  "devDependencies": {
+    "dockerlint": "^0.3.9"
+  }
 }
