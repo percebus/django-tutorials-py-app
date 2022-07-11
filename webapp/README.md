@@ -1,6 +1,8 @@
 These files are:
 
-# `webapp/
+See [Creating a project](https://docs.djangoproject.com/en/4.0/intro/tutorial01/#creating-a-project)
+
+# `webapp/`
 
 The outer `mysite/` root directory is a container for your project. Its name doesn’t matter to Django; you can rename it to anything you like.
 
