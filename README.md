@@ -4,6 +4,14 @@ Hello SMART-on-FHIR Django py webapp
 
 [![Continuous Integration](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/actions.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/actions.yml)
 
+## History
+
+See [HISTORY.md](./HISTORY.md)
+
+## `webapp/`
+
+See [`webapp/README.md`](./webapp/README.md)
+
 ## Setup
 
 ### First time
