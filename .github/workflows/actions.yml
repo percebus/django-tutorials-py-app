@@ -10,7 +10,7 @@ jobs:
       max-parallel: 6
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        python: [3.10]
+        python: ['3.9', '3.10']
     runs-on: ${{ matrix.os }}
     name: python:${{ matrix.python }}@${{ matrix.os }}
     steps:
@@ -23,7 +23,7 @@ jobs:
       - name: setup python@3.X
         uses: actions/setup-python@v4
         with:
-          python-version: '${{ matrix.python }}'
+          python-version: ${{ matrix.python }}
           architecture: 'x64'
       - name: ls
         run: ls
