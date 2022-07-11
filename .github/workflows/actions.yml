@@ -22,10 +22,10 @@ jobs:
       - name: setup python@3.X
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.10'
           architecture: 'x64'
       - name: ls
-        run: ls -la
+        run: ls
       - name: setup
         run: npm run setup:ci --if-present
       - name: npm install
