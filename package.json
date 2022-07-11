@@ -34,7 +34,7 @@
     "docker:containers:stop": "docker ps --all --filter status=running | grep -a 'hello-smart-on-fhir-django-py' | awk '{print $1}' | xargs docker stop",
     "docker:containers:exited:rm": "docker ps --all --filter status=exited | tail -n +2 | awk '{print $1}' | xargs docker rm",
     "docker:containers:rm": "docker rm $(docker ps -a -q)",
-    "docker:clean": "npm run docker:containers:stop && npm run docker:containers:exited:rm && npm run docker:images:rm",
+    "docker:clean": "npm run docker:containers:exited:rm && npm run docker:images:rm",
     "prerunserver:manage": "npm test",
     "runserver:manage": "python webapp/manage.py runserver",
     "start": "npm run runserver:manage",
