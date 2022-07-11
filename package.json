@@ -1,0 +1,54 @@
+{
+  "name": "hello-smart-on-fhir-django-py",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pip:install:dev": "python -m pip install -r ./requirements.dev.txt",
+    "pip:install:prd": "python -m pip install -r ./requirements.prd.txt",
+    "pip:install:all": "python -m pip install -r ./requirements.txt",
+    "npm:config:script-shell": "npm config set script-shell '/bin/bash'",
+    "npm:install:global:all": "npm install --location=global yarn",
+    "venv:venv": "python -m venv venv",
+    "prevenv:activate": "npm run npm:config:script-shell",
+    "venv:activate": "source venv/Scripts/activate",
+    "venv": "npm run venv:venv && npm run venv:activate",
+    "runserver:manage": "python webapp/manage.py runserver",
+    "setup:ci": "npm run pip:install:all",
+    "setup": "npm run venv && npm run pip:install:all && npm run npm:install:global",
+    "test": "exit 0",
+    "docker:build": "docker build --no-cache --pull --tag hello-smart-on-fhir-django-py:latest .",
+    "docker:images": "docker images --all | grep -a 'hello-smart-on-fhir-django-py'",
+    "docker:images:rm": "docker images --all | grep -a 'hello-smart-on-fhir-django-py' | awk '{print $3}' | xargs docker rmi --force",
+    "docker:run": "docker run -it -p 8000:8000 hello-smart-on-fhir-django-py",
+    "docker:run:ls": "npm run docker:run -- ls -la",
+    "docker:run:default": "npm run docker:run",
+    "docker:containers": "docker ps --all | grep -a 'hello-smart-on-fhir-django-py'",
+    "docker:containers:running": "docker ps --all --filter status=running | grep -a 'hello-smart-on-fhir-django-py'",
+    "docker:containers:stop": "docker ps --all --filter status=running | grep -a 'hello-smart-on-fhir-django-py' | awk '{print $1}' | xargs docker stop",
+    "docker:containers:exited:rm": "docker ps --all --filter status=exited | tail -n +2 | awk '{print $1}' | xargs docker rm",
+    "docker:containers:rm": "docker rm $(docker ps -a -q)",
+    "docker:clean": "npm run docker:containers:stop && npm run docker:containers:exited:rm && npm run docker:images:rm",
+    "start": "npm run runserver:manage",
+    "prestart:docker": "npm run docker:build",
+    "start:docker": "npm run docker:run:default"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/percebus/hello-smart-on-fhir-django-py.git"
+  },
+  "keywords": [
+    "SMART",
+    "FHIR",
+    "django",
+    "python",
+    "web",
+    "app"
+  ],
+  "author": "percebus",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/percebus/hello-smart-on-fhir-django-py/issues"
+  },
+  "homepage": "https://github.com/percebus/hello-smart-on-fhir-django-py#readme"
+}

@@ -1,0 +1,20 @@
+# Docker
+# Dockerfile # TODO
+.dockerignore
+
+# git
+.git
+.gitignore
+
+# IntelliJ
+.idea/
+
+# packages
+node_modules/
+bower_components/
+
+# CI/CD
+.github/
+
+# app
+dist/
