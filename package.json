@@ -7,14 +7,15 @@
     "pip:install:dev": "python -m pip install -r ./requirements.dev.txt",
     "pip:install:prd": "python -m pip install -r ./requirements.prd.txt",
     "pip:install:all": "python -m pip install -r ./requirements.txt",
-    "npm:config:script-shell": "npm config set script-shell '/bin/bash'",
-    "npm:install:global:all": "npm install --location=global yarn",
+    "npm:config:script-shell": "npm config set script-shell \"/bin/bash\"",
+    "npm:install:global:ci": "npm install --location=global open-cli",
+    "npm:install:global:all": "npm install --location=global yarn open-cli",
     "venv:venv": "python -m venv venv",
     "prevenv:activate": "npm run npm:config:script-shell",
     "venv:activate": "source venv/Scripts/activate",
     "venv": "npm run venv:venv && npm run venv:activate",
     "runserver:manage": "python webapp/manage.py runserver",
-    "setup:ci": "npm run pip:install:all",
+    "setup:ci": "npm run pip:install:all && npm run npm:install:global:ci",
     "setup": "npm run venv && npm run pip:install:all && npm run npm:install:global",
     "test": "exit 0",
     "docker:build": "docker build --no-cache --pull --tag hello-smart-on-fhir-django-py:latest .",
@@ -31,7 +32,8 @@
     "docker:clean": "npm run docker:containers:stop && npm run docker:containers:exited:rm && npm run docker:images:rm",
     "start": "npm run runserver:manage",
     "prestart:docker": "npm run docker:build",
-    "start:docker": "npm run docker:run:default"
+    "start:docker": "npm run docker:run:default",
+    "browser": "open-cli http://localhost:8000"
   },
   "repository": {
     "type": "git",
