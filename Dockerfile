@@ -24,5 +24,7 @@ RUN npm run setup:ci && npm ci
 RUN npm test
 
 EXPOSE 8000
+# RUN ["python", "webapp/manage.py", "migrate"]  # TODO
+
 ENTRYPOINT ["python", "webapp/manage.py"]
 CMD ["runserver", "0.0.0.0:8000"]

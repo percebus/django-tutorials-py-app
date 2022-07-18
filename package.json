@@ -40,11 +40,11 @@
     "docker:compose": "docker-compose",
     "docker:compose:build": "npm run docker:compose -- build",
     "docker:compose:up": "npm run docker:compose -- up",
-    "prerunserver:manage": "npm test",
-    "runserver:manage": "python webapp/manage.py runserver",
-    "start": "npm run runserver:manage",
-    "prestart:docker": "npm run docker:build",
-    "start:docker": "npm run docker:run:default",
+    "prepython:manage:runserver": "npm test",
+    "python:manage:runserver": "python webapp/manage.py runserver",
+    "start": "npm run python:manage:runserver",
+    "prestart:docker": "npm run docker:compose:build",
+    "start:docker": "npm run docker:compose:up",
     "browser": "open-cli http://localhost:8000"
   },
   "repository": {
