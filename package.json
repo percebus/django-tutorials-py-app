@@ -22,7 +22,7 @@
     "lint:py": "npm run flake8",
     "lint:T-SQL": "npm run tsqllint",
     "lint:docker": "npm run dockerlint",
-    "lint": "npm run lint:T-SQL && npm run lint:py && npm run lint:docker",
+    "lint": "npm run lint:py && npm run lint:docker",
     "pretest": "npm run lint",
     "test": "exit 0",
     "docker:build": "docker build --no-cache --pull --tag django-tutorials-py-app:latest .",
