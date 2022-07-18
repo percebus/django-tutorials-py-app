@@ -9,5 +9,4 @@ permissions:
 
 jobs:
   dependency-review:
-    name: Dependency Review
     uses: percebus/github-workflows/.github/workflows/pull_request.yml@main
