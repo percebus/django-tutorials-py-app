@@ -1,4 +1,4 @@
-name: Dependency Review
+name: Pre-Submit Verification
 
 # "This run was triggered by the "push" event, which is unsupported. 
 #  Please ensure you are using the "pull_request" event for this workflow."
