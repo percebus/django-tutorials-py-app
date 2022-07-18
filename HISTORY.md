@@ -17,3 +17,6 @@
 [Writing your first Django app, part 2](https://docs.djangoproject.com/en/4.0/intro/tutorial02/]
 
 1. `$> python manage.py migrate`
+1. `$> python manage.py makemigrations polls`
+1. `$> python manage.py sqlmigrate polls 0001`
+1. `$> python manage.py migrate`
