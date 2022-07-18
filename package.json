@@ -1,8 +1,7 @@
 {
-  "name": "hello-smart-on-fhir-django-py",
+  "name": "django-tutorials-py-app",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "pip:install:dev": "python -m pip install -r ./requirements.dev.txt",
     "pip:install:prd": "python -m pip install -r ./requirements.prd.txt",
@@ -24,15 +23,15 @@
     "lint": "npm run lint:py && npm run lint:docker",
     "pretest": "npm run lint",
     "test": "exit 0",
-    "docker:build": "docker build --no-cache --pull --tag hello-smart-on-fhir-django-py:latest .",
-    "docker:images": "docker images --all | grep -a 'hello-smart-on-fhir-django-py'",
-    "docker:images:rm": "docker images --all | grep -a 'hello-smart-on-fhir-django-py' | awk '{print $3}' | xargs docker rmi --force",
-    "docker:run": "docker run -it -p 8000:8000 hello-smart-on-fhir-django-py",
+    "docker:build": "docker build --no-cache --pull --tag django-tutorials-py-app:latest .",
+    "docker:images": "docker images --all | grep -a 'django-tutorials-py-app'",
+    "docker:images:rm": "docker images --all | grep -a 'django-tutorials-py-app' | awk '{print $3}' | xargs docker rmi --force",
+    "docker:run": "docker run -it -p 8000:8000 django-tutorials-py-app",
     "docker:run:ls": "npm run docker:run -- ls -la",
     "docker:run:default": "npm run docker:run",
-    "docker:containers": "docker ps --all | grep -a 'hello-smart-on-fhir-django-py'",
-    "docker:containers:running": "docker ps --all --filter status=running | grep -a 'hello-smart-on-fhir-django-py'",
-    "docker:containers:stop": "docker ps --all --filter status=running | grep -a 'hello-smart-on-fhir-django-py' | awk '{print $1}' | xargs docker stop",
+    "docker:containers": "docker ps --all | grep -a 'django-tutorials-py-app'",
+    "docker:containers:running": "docker ps --all --filter status=running | grep -a 'django-tutorials-py-app'",
+    "docker:containers:stop": "docker ps --all --filter status=running | grep -a 'django-tutorials-py-app' | awk '{print $1}' | xargs docker stop",
     "docker:containers:exited:rm": "docker ps --all --filter status=exited | tail -n +2 | awk '{print $1}' | xargs docker rm",
     "docker:containers:rm": "docker rm $(docker ps -a -q)",
     "docker:clean": "npm run docker:containers:exited:rm && npm run docker:images:rm",
@@ -45,7 +44,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/percebus/hello-smart-on-fhir-django-py.git"
+    "url": "git+https://github.com/percebus/django-tutorials-py-app.git"
   },
   "keywords": [
     "SMART",
@@ -58,9 +57,9 @@
   "author": "percebus",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/percebus/hello-smart-on-fhir-django-py/issues"
+    "url": "https://github.com/percebus/django-tutorials-py-app/issues"
   },
-  "homepage": "https://github.com/percebus/hello-smart-on-fhir-django-py#readme",
+  "homepage": "https://github.com/percebus/django-tutorials-py-app#readme",
   "devDependencies": {
     "dockerlint": "^0.3.9"
   }

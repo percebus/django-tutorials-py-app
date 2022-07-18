@@ -1,8 +1,8 @@
-# `hello-smart-on-fhir-django-py`
+# `django-tutorials-py-app`
 
 Hello SMART-on-FHIR Django py webapp
 
-[![verification](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/always.yml) [![Dependency Review](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/pull_request.yml)
+[![verification](https://github.com/percebus/django-tutorials-py-app/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/django-tutorials-py-app/actions/workflows/always.yml) [![Dependency Review](https://github.com/percebus/django-tutorials-py-app/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/django-tutorials-py-app/actions/workflows/pull_request.yml)
 
 ## History
 
@@ -34,7 +34,7 @@ $> npm run setup:ci
 
 ### Dependencies
 
-[![Dependency Review](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/pull_request.yml)
+[![Dependency Review](https://github.com/percebus/django-tutorials-py-app/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/django-tutorials-py-app/actions/workflows/pull_request.yml)
 
 ```bash
 $> npm install
@@ -42,7 +42,7 @@ $> npm install
 
 ## Development
 
-[![verification](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/always.yml)
+[![verification](https://github.com/percebus/django-tutorials-py-app/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/django-tutorials-py-app/actions/workflows/always.yml)
 
 ### Run
 
