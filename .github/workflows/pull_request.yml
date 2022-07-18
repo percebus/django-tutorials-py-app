@@ -8,6 +8,6 @@ permissions:
   contents: read
 
 jobs:
-  on_pull_request:
-    name: percebus/github-workflows
+  dependency-review:
+    name: percebus
     uses: percebus/github-workflows/.github/workflows/pull_request.yml@main
