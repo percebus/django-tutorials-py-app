@@ -33,6 +33,7 @@ jobs:
 
 
   tests:
+    if: github.ref == 'refs/heads/main'
     needs: test
     strategy: 
       max-parallel: 6
