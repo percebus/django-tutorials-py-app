@@ -12,4 +12,4 @@ jobs:
     name: Dependency Review
     runs-on: ubuntu-latest
     steps:
-      - uses: percebus/github-workflows/.github/workflows/pull_request.yml
+      - uses: percebus/github-workflows/.github/workflows/pull_request.yml@main
