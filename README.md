@@ -2,7 +2,7 @@
 
 Hello SMART-on-FHIR Django py webapp
 
-[![verification](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/actions.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/actions.yml) [![Dependency Review](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/pull_request.yml)
+[![verification](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/always.yml) [![Dependency Review](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/pull_request.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/pull_request.yml)
 
 ## History
 
@@ -40,21 +40,25 @@ $> npm run setup:ci
 $> npm install
 ```
 
-## Run
+## Development
 
-### local
+[![verification](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/hello-smart-on-fhir-django-py/actions/workflows/always.yml)
+
+### Run
+
+#### local
 
 ```bash
 $> npm start
 ```
 
-### Docker
+#### Docker
 
 ```bash
 $> npm run start:docker
 ```
 
-## Browser
+### Browser
 
 ```bash
 $> npm run browser
