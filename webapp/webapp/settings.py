@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+from pprint import pprint
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,6 +27,7 @@ SECRET_KEY = 'django-insecure-^xtk%pszzv82ql77^%w5-(avdok4_fuqn1g$!m)3mt384@!ybo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['0.0.0.0']  # TODO? or XXX?
 ALLOWED_HOSTS = []
 
 
@@ -74,14 +76,15 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 # SRC: https://www.postgresql.org/docs/current/libpq-envars.html
 postgreSQL = {
-    'hostaddr': os.environ['PGHOSTADDR'],
+    'host': os.environ['PGHOST'],
     'port': os.environ['PGPORT'],
     'user': os.environ['PGUSER'],
     'password': os.environ['PGPASSWORD'],
     'dbname': os.environ['PGDATABASE']
 }
 
-# TODO log postgreSQL
+if (DEBUG):
+    pprint(postgreSQL)  # FIXME hide pwd
 
 
 # Database
@@ -90,7 +93,7 @@ postgreSQL = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': postgreSQL['hostaddr'],
+        'HOST': postgreSQL['host'],
         'PORT': postgreSQL['port'],
         'USER': postgreSQL['user'],
         'PASSWORD': postgreSQL['password'],

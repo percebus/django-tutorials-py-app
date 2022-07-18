@@ -1,24 +1,33 @@
 version: "3.8"
 services:
   postgres:
-    image: postgres:14.3-alpine
-    restart: always
+#   image: postgres:14.3-alpine
+    image: postgres
+#   restart: always  # TODO? or XXX?
+
+    # TODO
+#   volumes:
+#     - ./data/postgres:/var/lib/postgresql/data
+
     environment:
-      - "POSTGRES_USER=${PGUSER}"
-      - "POSTGRES_PASSWORD=${PGPASSWORD}"
-      - "POSTGRES_DB=${PGDATABASE}"
-    ports:
-      - '5432:5432'
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+      - POSTGRES_DB=${PGDATABASE}
+#   ports:
+#     - '5432:5432'
 
   webapp:
     build: .
+#   command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
     ports: 
       - '8000:8000'
     environment:
-      - "PGHOSTADDR=${PGHOSTADDR}"
-      - "PGPORT=${PGPORT}"
-      - "PGUSER=${PGUSER}"
-      - "PGPASSWORD=${PGPASSWORD}"
-      - "PGDATABASE=${PGDATABASE}"
-    links:
+      - PGHOST=postgres
+      - PGPORT=${PGPORT}
+      - PGUSER=${PGUSER}
+      - PGPASSWORD=${PGPASSWORD}
+      - PGDATABASE=${PGDATABASE}
+    depends_on:
       - postgres
