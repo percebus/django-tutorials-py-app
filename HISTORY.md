@@ -9,13 +9,13 @@
 
 #### Part 1
 
-[Writing your first Django app, part 1](https://docs.djangoproject.com/en/4.0/intro/tutorial01/]
+[Writing your first Django app, part 1](https://docs.djangoproject.com/en/4.0/intro/tutorial01/)
 
 1. `$> python manage.py startapp polls`
 
 #### Part 2
 
-[Writing your first Django app, part 2](https://docs.djangoproject.com/en/4.0/intro/tutorial02/]
+[Writing your first Django app, part 2](https://docs.djangoproject.com/en/4.0/intro/tutorial02/)
 
 1. `$> python manage.py migrate`
 
@@ -32,3 +32,5 @@
 #### Part 3
 
 [Writing your first Django app, part 3](https://docs.djangoproject.com/en/4.0/intro/tutorial03/)
+
+1. Added `http(s):polls/{question_id}/*` URLs
