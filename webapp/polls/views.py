@@ -1,25 +1,17 @@
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views import generic
 from django.shortcuts import render, get_object_or_404
 
-from .models import Question
+from .models import Question, Choice
 
 
-def index(request):
-    questions = Question.objects.order_by('-pub_date')[:5]
-    return render(request, 'polls/index.html', {
-        'questions': questions
-    })
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'questions'
 
-
-def last5(request):
-    questions = [
-        oQuestion.question_text
-        for oQuestion
-        in Question.objects.order_by('-pub_date')[:5]
-    ]
-
-    response = ', '.join(questions)
-    return HttpResponse(response)
+    def get_queryset(self):
+        return Question.objects.order_by('-pub_date')[:5]
 
 
 def detail(request, question_id):
@@ -28,12 +20,39 @@ def detail(request, question_id):
         'question': oQuestion
     })
 
+# FIXME
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
 
 def results(request, question_id):
-    response = "You're looking at the results of question %s." % question_id
-    return HttpResponse(response)
+    oQuestion = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {
+        'question': oQuestion
+    })
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
 
 
 def vote(request, question_id):
-    response = "You're voting on question %s." % question_id
-    return HttpResponse(response)
+    oQuestion = get_object_or_404(Question, pk=question_id)
+    try:
+        oChoice = oQuestion.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        # Redisplay the question voting form.
+        return render(request, 'polls/detail.html', {
+            'question': oQuestion,
+            'error_message': "You didn't select a choice.",
+        })
+    else:
+        oChoice.votes += 1
+        oChoice.save()
+
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        response = reverse('polls:results', args=(oQuestion.id,))
+        return HttpResponseRedirect(response)
