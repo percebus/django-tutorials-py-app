@@ -35,7 +35,7 @@ jobs:
   tests:
     if: github.ref == 'refs/heads/main'
     needs: test
-    strategy: 
+    strategy:
       max-parallel: 6
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
@@ -84,10 +84,10 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v3
+
     - name: setup CodeQL
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
-
     - name: CodeQL
       uses: github/codeql-action/analyze@v2

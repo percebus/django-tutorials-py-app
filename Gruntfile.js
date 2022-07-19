@@ -5,10 +5,16 @@ module.exports = (grunt) => {
     pattern: ['grunt-*', '!grunt-template-*']
   })
 
+  const CSSModes = {
+    STRICT: 2,
+    RELAX: false
+  }
+
   grunt.initConfig({
     jsonlint: {
       options: { prose: true },
       npm: ['package*.json'],
+      csslint: ['.csslintrc'],
       htmllint: ['.htmllintrc']
     },
     yamllint: {
@@ -20,8 +26,16 @@ module.exports = (grunt) => {
     },
     csslint: {
       options: {
-        import: 2 // strict
-        // import: false // lax
+        // csslintrc: '.csslintrc' // TODO?
+        import: CSSModes.STRICT // XXX?
+
+        /* TODO vvv
+        // formatters: [
+        //   {id: 'junit-xml', dest: 'report/csslint_junit.xml'},
+        //   {id: 'csslint-xml', dest: 'report/csslint.xml'}
+        // ]
+         * TODO ^^^
+         */
       },
       webapp: ['webapp/**/*/static/**/*.css']
     }
