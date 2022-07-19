@@ -1,4 +1,4 @@
-# `django-tutorials-py-app` 
+# `django-tutorials-py-app`
 
 ## HISTORY
 
@@ -46,3 +46,9 @@
 [Writing your first Django app, part](https://docs.djangoproject.com/en/4.0/intro/tutorial05/)
 
 1. Added Unit Tests
+
+#### Part 6
+
+[Writing your first Django app, part 6](https://docs.djangoproject.com/en/4.0/intro/tutorial06/)
+
+1. Added `static/` CSS files
