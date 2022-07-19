@@ -34,3 +34,9 @@
 [Writing your first Django app, part 3](https://docs.djangoproject.com/en/4.0/intro/tutorial03/)
 
 1. Added `http(s):polls/{question_id}/*` URLs
+
+#### Part 4
+
+[Writing your first Django app, part 4](https://docs.djangoproject.com/en/4.0/intro/tutorial04/)
+
+1. Added `generic` to `polls/views`
