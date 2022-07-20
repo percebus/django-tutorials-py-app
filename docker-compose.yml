@@ -21,7 +21,7 @@ services:
 #   command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
-    ports: 
+    ports:
       - '8000:8000'
     environment:
       - PGHOST=postgres  # service name
@@ -29,5 +29,6 @@ services:
       - PGUSER=${PGUSER}
       - PGPASSWORD=${PGPASSWORD}
       - PGDATABASE=${PGDATABASE}
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
     depends_on:
       - postgres
