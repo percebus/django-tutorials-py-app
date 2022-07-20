@@ -14,17 +14,17 @@ jobs:
         env:
           PGHOST: localhost
           PGPORT: 5432
-          PGDATABASE: tutorials
+          PGDATABASE: FIXME
           PGUSER: FIXME
           PGPASSWORD: FIXME
         ports:
           - 5432:5432
           # needed because the postgres container does not provide a healthcheck
-        options: \
-          --health-cmd pg_isready \
-          --health-interval 10s \
-          --health-timeout 5s \
-          --health-retries 5
+        options: "
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5"
     env:
       DEBUG: ${{ secrets.DEBUG }}
       PGHOST: ${{ secrets.PGHOST }}
@@ -54,9 +54,9 @@ jobs:
       - name: lint
         run: npm run lint
 
-      - name: setup postgres # FIXME copy postgres files instead
+      - name: manage.py migrate # FIXME copy postgres files instead
         run: python webapp/manage.py migrate
-      - name: test:polls
+      - name: manage.py migrate test polls
         run: python webapp/manage.py test polls
 
 
