@@ -8,15 +8,22 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    env:
+      DEBUG: ${{ secrets.DEBUG }}
+      PGHOST: ${{ secrets.PGHOST }}
+      PGPORT: ${{ secrets.PGPORT }}
+      PGDATABASE: ${{ secrets.PGDATABASE }}
+      PGUSER: ${{ secrets.PGUSER }}
+      PGPASSWORD: ${{ secrets.PGPASSWORD }}
     services:
       postgres:
         image: postgres
         env:
-          PGHOST: localhost
-          PGPORT: 5432
-          PGDATABASE: FIXME
-          PGUSER: FIXME
-          PGPASSWORD: FIXME
+          PGHOST: ${{ PGHOST }}
+          PGPORT: ${{ PGPORT }}
+          PGUSER: ${{ PGUSER }}
+          PGPASSWORD: ${{ PGPASSWORD }}
+          PGDATABASE: ${{ PGDATABASE }}
         ports:
           - 5432:5432
           # needed because the postgres container does not provide a healthcheck
@@ -25,12 +32,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5"
-    env:
-      DEBUG: ${{ secrets.DEBUG }}
-      PGHOST: ${{ secrets.PGHOST }}
-      PGDATABASE: ${{ secrets.PGDATABASE }}
-      PGUSER: ${{ secrets.PGUSER }}
-      PGPASSWORD: ${{ secrets.PGPASSWORD }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
