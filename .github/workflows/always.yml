@@ -16,7 +16,7 @@ jobs:
       PGPASSWORD: ${{ secrets.PGPASSWORD }}
       PGDATABASE: ${{ secrets.PGDATABASE }}
       DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-    services:
+    services: # Container operations are only supported on Linux runners
       postgres:
         image: postgres
         env:
@@ -60,7 +60,7 @@ jobs:
 
 
   tests:
-    # if: github.ref == 'refs/heads/main' # TODO
+    if: github.ref == 'refs/heads/main'
     needs: test
     strategy:
       max-parallel: 6
@@ -68,29 +68,7 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         python: ['3.9', '3.10']
     runs-on: ${{ matrix.os }}
-    name: Test @ python:${{ matrix.python }}@${{ matrix.os }}
-    env:
-      DEBUG: ${{ secrets.DEBUG }}
-      PGHOST: ${{ secrets.PGHOST }}
-      PGPORT: ${{ secrets.PGPORT }}
-      PGUSER: ${{ secrets.PGUSER }}
-      PGPASSWORD: ${{ secrets.PGPASSWORD }}
-      PGDATABASE: ${{ secrets.PGDATABASE }}
-      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_USER: ${{ secrets.PGUSER }}
-          POSTGRES_PASSWORD: ${{ secrets.PGPASSWORD }}
-          POSTGRES_DB: ${{ secrets.PGDATABASE }}
-        ports:
-          - 5432:5432
-        options: # postgres container does not provide a healthcheck
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+    name: Lint @ python:${{ matrix.python }}@${{ matrix.os }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -113,11 +91,6 @@ jobs:
 
       - name: lint
         run: npm run lint
-
-      - name: manage.py migrate # FIXME copy postgres files instead
-        run: python webapp/manage.py migrate
-      - name: manage.py migrate test polls
-        run: python webapp/manage.py test polls
 
 
   codeQL:
