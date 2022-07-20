@@ -16,7 +16,7 @@ jobs:
       PGPASSWORD: ${{ secrets.PGPASSWORD }}
       PGDATABASE: ${{ secrets.PGDATABASE }}
       DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-    services: # Container operations are only supported on Linux runners
+    services: # "Container operations are only supported on Linux runners"
       postgres:
         image: postgres
         env:
@@ -25,7 +25,7 @@ jobs:
           POSTGRES_DB: ${{ secrets.PGDATABASE }}
         ports:
           - 5432:5432
-        options: # postgres container does not provide a healthcheck
+        options: # "postgres container does not provide a healthcheck"
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
@@ -55,7 +55,7 @@ jobs:
 
       - name: manage.py migrate # FIXME copy postgres files instead
         run: python webapp/manage.py migrate
-      - name: manage.py migrate test polls
+      - name: manage.py test polls
         run: python webapp/manage.py test polls
 
 
