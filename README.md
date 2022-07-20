@@ -14,13 +14,25 @@ See [`webapp/README.md`](./webapp/README.md)
 
 ## Setup
 
+### Environment Variables
+
+#### `env/{environment}.ba.sh`
+
+See [`env/README.md`](./env/README.md)
+
+#### `.env`
+
+Set same variables as your default `env/{environment}.ba.sh`.
+
+i.e. `env/localhost.ba.sh`
+
 ### First time
 
 ```bash
 $> npm run setup
 ```
 
-#### FIXME 
+#### FIXME
 
 Not working: Need to make `source` work from `npm`
 
