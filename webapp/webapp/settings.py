@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^xtk%pszzv82ql77^%w5-(avdok4_fuqn1g$!m)3mt384@!ybo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', False)
 
 # ALLOWED_HOSTS = ['0.0.0.0']  # TODO? or XXX?
 ALLOWED_HOSTS = []
@@ -84,7 +84,7 @@ postgreSQL = {
 }
 
 if (DEBUG):
-    pprint(postgreSQL)  # FIXME hide pwd
+    pprint(postgreSQL)
 
 
 # Database
