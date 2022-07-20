@@ -12,18 +12,16 @@ jobs:
       DEBUG: ${{ secrets.DEBUG }}
       PGHOST: ${{ secrets.PGHOST }}
       PGPORT: ${{ secrets.PGPORT }}
-      PGDATABASE: ${{ secrets.PGDATABASE }}
       PGUSER: ${{ secrets.PGUSER }}
       PGPASSWORD: ${{ secrets.PGPASSWORD }}
+      PGDATABASE: ${{ secrets.PGDATABASE }}
     services:
       postgres:
         image: postgres
         env:
-          PGHOST: ${{ PGHOST }}
-          PGPORT: ${{ PGPORT }}
-          PGUSER: ${{ PGUSER }}
-          PGPASSWORD: ${{ PGPASSWORD }}
-          PGDATABASE: ${{ PGDATABASE }}
+          POSTGRES_USER: ${{ secrets.PGUSER }}
+          POSTGRES_PASSWORD: ${{ secrets.PGPASSWORD }}
+          POSTGRES_DB: ${{ secrets.PGDATABASE }}
         ports:
           - 5432:5432
           # needed because the postgres container does not provide a healthcheck
