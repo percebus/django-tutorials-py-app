@@ -1,16 +1,34 @@
-import requests
-from django.http import StreamingHttpResponse
+# from rest_framework.test import status  # FIXME
+from .utils import proxy
+
+statuses = {
+    'OK': 200,
+    'not_found': 404,
+    'teapot': 418
+}
+
+BASE_URL = 'HTTPS://HTTPbin.org/status/%d'
+routes = {
+    'OK': BASE_URL % statuses['OK'],
+    'not_found': 404,
+    'teapot': BASE_URL % statuses['teapot']
+}
 
 
 def google(request):
-    proxied = requests.get('https://google.com', stream=True)
-    status = proxied.status_code
-    reason = proxied.reason
-    content_type = proxied.headers.get('content-type')
-    streaming_content = proxied.raw
-    return StreamingHttpResponse(
-        streaming_content,
-        status=status,
-        reason=reason,
-        content_type=content_type
-    )
+    return proxy.get('HTTPS://google.com')
+
+
+def not_found(request):
+    url = routes['not_found']
+    return proxy.get(url)
+
+
+def OK(request):
+    url = routes['OK']
+    return proxy.get(url)
+
+
+def teapot(request):
+    url = routes['teapot']
+    return proxy.get(url)
