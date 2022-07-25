@@ -28,21 +28,20 @@ i.e. `env/localhost.ba.sh`
 
 ### First time
 
-```bash
-$> npm run setup
-```
-
-#### FIXME
-
-Not working: Need to make `source` work from `npm`
-
-### `venv`
+#### `venv`
 
 ```bash
 $> python -m venv venv
 $> source venv/Scripts/activate
-$> npm run setup:ci
 ```
+
+#### `setup(:ci)`
+
+```bash
+$> npm run setup
+```
+
+Not working: Need to make `source` work from `npm`
 
 ### Dependencies
 
