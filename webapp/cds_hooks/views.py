@@ -1,29 +1,43 @@
-
+import json
+from django.http import StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .utils.cds import config
-from .utils.factories import proxy
-from .utils.factories import aggregator
+# from .cds import config
+from .cds import client
+from .cds import aggregator
 
 
-hooks = config['hooks']
+# FIXME vvv move to config
+config_path = './webapp/cds_hooks/config/cds-hooks.config.json'
+with open(config_path, 'r') as oFile:
+    json_string = oFile.read()
+config = json.loads(json_string)
+# FIXME ^^^
+
+groups = config['groups']
+
 
 @csrf_exempt
 def patient_greeting(request):
-    hook = hooks['patient-view']['services']['patient-greeting']
-    proxied_post = proxy.create_post(hook)
-    return proxied_post(request)
+    hook = groups['patient-view']['hooks']['patient-greeting']
+    post = client.create_post(hook)
+    proxied = post(request)
+    return StreamingHttpResponse(
+        proxied.raw,
+        status=proxied.status_code,
+        reason=proxied.reason,
+        content_type=proxied.headers.get('content-type'))
 
 
 @csrf_exempt
 def patient_view(request):
-    _hooks = hooks['patient-view']
-    aggregated_post = aggregator.create_post(_hooks)
-    return aggregated_post(request)
+    hooks = groups['patient-view']['hooks']
+    post = aggregator.create_post(hooks)
+    return post(request)
 
 
 @csrf_exempt
 def order_select(request):
-    _hooks = hooks['order-select']
-    aggregated_post = aggregator.create_post(_hooks)
-    return aggregated_post(request)
+    hooks = groups['order-select']['hooks']
+    post = aggregator.create_post(hooks)
+    return post(request)

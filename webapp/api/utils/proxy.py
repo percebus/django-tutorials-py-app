@@ -12,5 +12,4 @@ def get(url):
         streaming_content,
         status=status,
         reason=reason,
-        content_type=content_type
-    )
+        content_type=content_type)
