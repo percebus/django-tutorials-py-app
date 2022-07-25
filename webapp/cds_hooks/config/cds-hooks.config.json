@@ -1,0 +1,36 @@
+{
+    "hooks": {
+        "patient-view": {
+            "services": {
+                "patient-greeting": {
+                    "display": "Patient View",
+                    "hook": "patient-view",
+                    "hookInstance": "2e34e496-aa17-448a-984d-4740ee42d4b5",
+                    "url": "https://fhir-org-cds-services.appspot.com/cds-services/patient-greeting",
+                    "service": "patient-greeting",
+                    "fhirServer": "https://api.logicahealth.org/percebusR4/data"
+                }
+            }
+        },
+        "order-select": {
+            "services": {
+                "cms-price-check": {
+                    "display": "Rx View",
+                    "hook": "order-select",
+                    "hookInstance": "2e34e496-aa17-448a-984d-4740ee42d4b5",
+                    "url": "https://fhir-org-cds-services.appspot.com/cds-services/cms-price-check",
+                    "service": "cms-price-check",
+                    "fhirServer": "https://api.logicahealth.org/percebusR4/data"
+                },
+                "pama-imaging": {
+                    "display": "PAMA Imaging",
+                    "hook": "order-select",
+                    "hookInstance": "cbdb5fc2-9632-48fc-8adf-ebbfeff3a954",
+                    "url": "https://fhir-org-cds-services.appspot.com/cds-services/pama-imaging",
+                    "service": "pama-imaging",
+                    "fhirServer": "https://api.logicahealth.org/percebusR4/data"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "uuid": "8fe4738b-eba2-4f8d-a5fb-d06e15ee13e4",
+    "summary": "Now seeing: Daniel",
+    "source": {
+      "label": "Patient greeting service"
+    },
+    "indicator": "info"
+}

@@ -1,0 +1,8 @@
+{
+    "uuid": "96b265b5-04a0-4a8b-b2a9-2e22918ca99f",
+    "summary": "Now seeing: Aaron",
+    "source": {
+      "label": "Patient greeting service"
+    },
+    "indicator": "info"
+}
