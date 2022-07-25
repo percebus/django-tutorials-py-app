@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 # SRC: https://www.postgresql.org/docs/current/libpq-envars.html
 postgreSQL = {
-    'host': os.environ['PGHOST'],
-    'port': os.environ['PGPORT'],
-    'user': os.environ['PGUSER'],
-    'password': os.environ['PGPASSWORD'],
-    'dbname': os.environ['PGDATABASE']
+    'host': os.environ['POSTGRES_HOST'],
+    'port': os.environ['POSTGRES_PORT'],
+    'user': os.environ['POSTGRES_USER'],
+    'password': os.environ['POSTGRES_PASSWORD'],
+    'dbname': os.environ['POSTGRES_DB']
 }
 
 if (DEBUG):
