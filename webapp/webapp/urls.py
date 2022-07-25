@@ -19,7 +19,9 @@ from django.urls import include, path
 urlpatterns = [
     # path('', include('polls.urls')),  # TODO? or XXX?
     path('polls/', include('polls.urls')),
+
     path('api/', include('api.urls')),
+    path('cds-hooks/', include('cds_hooks.urls')),
 
     path('admin/', admin.site.urls)
 ]

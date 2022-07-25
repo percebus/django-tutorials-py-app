@@ -15,7 +15,8 @@ module.exports = (grunt) => {
       options: { prose: true },
       npm: ['package*.json'],
       csslint: ['.csslintrc'],
-      htmllint: ['.htmllintrc']
+      htmllint: ['.htmllintrc'],
+      webapp: ['webapp/**/*.json']
     },
     yamllint: {
       github: ['.github/workflows/**/*.yml']
