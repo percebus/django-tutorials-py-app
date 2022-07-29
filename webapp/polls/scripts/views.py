@@ -9,12 +9,12 @@ setup_test_environment()
 oClient = Client()
 
 # get a response from '/'
-response = oClient.get('/')  # Not Found: /
+response = oClient.get("/")  # Not Found: /
 pprint(response.status_code)
 
 # on the other hand we should expect to find something at '/polls/'
 # we'll use 'reverse()' rather than a hardcoded URL
-response = oClient.get(reverse('polls:index'))
+response = oClient.get(reverse("polls:index"))
 pprint(response.status_code)
 pprint(response.content)
-pprint(response.context['questions'])  # <QuerySet [<Question: What's up?>]>
+pprint(response.context["questions"])  # <QuerySet [<Question: What's up?>]>

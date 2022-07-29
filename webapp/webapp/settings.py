@@ -23,13 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = bool(os.getenv('DEBUG', False))  # FIXME
-DEBUG = bool(os.getenv('DEBUG', True))  # XXX
+DEBUG = bool(os.getenv("DEBUG", True))  # XXX
 
-LOG_LEVEL = os.getenv('DJANGO_LOG_LEVEL', 'INFO')
+LOG_LEVEL = os.getenv("DJANGO_LOG_LEVEL", "INFO")
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')  # NOTE: key not present on docker build!
-if (DEBUG):
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")  # NOTE: key not present on docker build!
+if DEBUG:
     pprint("DJANGO_SECRET_KEY: %s" % SECRET_KEY)
 
 # ALLOWED_HOSTS = ['0.0.0.0']  # TODO? or XXX?
@@ -39,58 +39,58 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'api.apps.ApiConfig',                   # webapp/api/
-    'polls.apps.PollsConfig',               # webapp/polls/
-    'cds_services.apps.CdsServicesConfig',  # webapp/cds_services/
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "api.apps.ApiConfig",  # webapp/api/
+    "polls.apps.PollsConfig",  # webapp/polls/
+    "cds_services.apps.CdsServicesConfig",  # webapp/cds_services/
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'webapp.urls'
+ROOT_URLCONF = "webapp.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'webapp.wsgi.application'
+WSGI_APPLICATION = "webapp.wsgi.application"
 
 
 # SRC: https://www.postgresql.org/docs/current/libpq-envars.html
 postgreSQL = {
-    'host': os.environ['POSTGRES_HOST'],
-    'port': os.environ['POSTGRES_PORT'],
-    'user': os.environ['POSTGRES_USER'],
-    'password': os.environ['POSTGRES_PASSWORD'],
-    'dbname': os.environ['POSTGRES_DB']
+    "host": os.environ["POSTGRES_HOST"],
+    "port": os.environ["POSTGRES_PORT"],
+    "user": os.environ["POSTGRES_USER"],
+    "password": os.environ["POSTGRES_PASSWORD"],
+    "dbname": os.environ["POSTGRES_DB"],
 }
 
-if (DEBUG):
+if DEBUG:
     pprint(postgreSQL)
 
 
@@ -98,13 +98,13 @@ if (DEBUG):
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': postgreSQL['host'],
-        'PORT': postgreSQL['port'],
-        'USER': postgreSQL['user'],
-        'PASSWORD': postgreSQL['password'],
-        'NAME': postgreSQL['dbname']
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": postgreSQL["host"],
+        "PORT": postgreSQL["port"],
+        "USER": postgreSQL["user"],
+        "PASSWORD": postgreSQL["password"],
+        "NAME": postgreSQL["dbname"],
     }
 }
 
@@ -113,19 +113,21 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -135,30 +137,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'WARNING',
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': LOG_LEVEL,
-            'propagate': False,
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": LOG_LEVEL,
+            "propagate": False,
         }
-    }
+    },
 }

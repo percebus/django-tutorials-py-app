@@ -7,14 +7,14 @@ oLogger = logging.getLogger(__name__)
 
 
 def parse(request):
-    json_string = request.body.decode('utf-8')
+    json_string = request.body.decode("utf-8")
     return json.loads(json_string)
 
 
 def create_post(hook):
     data = {}
 
-    for param in ['hook', 'hookInstance', 'fhirServer']:
+    for param in ["hook", "hookInstance", "fhirServer"]:
         data[param] = hook[param]
 
     def _post(request):
@@ -24,7 +24,7 @@ def create_post(hook):
         for key, value in body.items():
             data[key] = value
 
-        url = hook['url']
+        url = hook["url"]
         oLogger.info(url)
         oLogger.debug(data)
 

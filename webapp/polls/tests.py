@@ -17,43 +17,36 @@ def createQuestion(question_text, days):
     in the past, positive for questions that have yet to be published).
     """
     time = timezone.now() + datetime.timedelta(days=days)
-    return Question \
-        .objects \
-        .create(question_text=question_text, pub_date=time)
+    return Question.objects.create(question_text=question_text, pub_date=time)
 
 
 class QuestionModelTests(TestCase):
-
     def test_was_published_recently_with_future_question(self):
         """
         was_published_recently() returns False for questions whose pub_date
         is in the future.
         """
-        fixedQuestion = createQuestion(question_text='in 30 days', days=+30)
-        self.assertIs(
-            fixedQuestion.was_published_recently(),
-            False)
+        fixedQuestion = createQuestion(question_text="in 30 days", days=+30)
+        self.assertIs(fixedQuestion.was_published_recently(), False)
 
     def test_was_published_recently_with_old_question(self):
         """
         was_published_recently() returns False for questions whose pub_date
         is older than 1 day.
         """
-        oldQuestion = createQuestion(question_text='2 days ago', days=-2)
-        self.assertIs(
-            oldQuestion.was_published_recently(),
-            False)
+        oldQuestion = createQuestion(question_text="2 days ago", days=-2)
+        self.assertIs(oldQuestion.was_published_recently(), False)
 
     def test_was_published_recently_with_recent_question(self):
         """
         was_published_recently() returns True for questions whose pub_date
         is within the last day.
         """
-        almost_yesterday = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
+        almost_yesterday = timezone.now() - datetime.timedelta(
+            hours=23, minutes=59, seconds=59
+        )
         recentQuestion = Question(pub_date=almost_yesterday)
-        self.assertIs(
-            recentQuestion.was_published_recently(),
-            True)
+        self.assertIs(recentQuestion.was_published_recently(), True)
 
 
 class QuestionIndexViewTests(TestCase):
@@ -62,10 +55,10 @@ class QuestionIndexViewTests(TestCase):
         If no questions exist,
         an appropriate message is displayed.
         """
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse("polls:index"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No polls are available.")
-        self.assertQuerysetEqual(response.context['questions'], [])
+        self.assertQuerysetEqual(response.context["questions"], [])
 
     def test_past_question(self):
         """
@@ -73,9 +66,9 @@ class QuestionIndexViewTests(TestCase):
         are displayed on the index page.
         """
         pastQuestion = createQuestion(question_text="Past question.", days=-30)
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse("polls:index"))
         self.assertQuerysetEqual(
-            response.context['questions'],
+            response.context["questions"],
             [pastQuestion],
         )
 
@@ -87,9 +80,9 @@ class QuestionIndexViewTests(TestCase):
         futureQuestion = createQuestion(question_text="Future question.", days=30)
         ignore(futureQuestion)
 
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse("polls:index"))
         self.assertContains(response, "No polls are available.")
-        self.assertQuerysetEqual(response.context['questions'], [])
+        self.assertQuerysetEqual(response.context["questions"], [])
 
     def test_future_question_and_past_question(self):
         """
@@ -100,9 +93,9 @@ class QuestionIndexViewTests(TestCase):
         ignore(futureQuestion)
 
         pastQuestion = createQuestion(question_text="Past question.", days=-30)
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse("polls:index"))
         self.assertQuerysetEqual(
-            response.context['questions'],
+            response.context["questions"],
             [pastQuestion],
         )
 
@@ -112,9 +105,9 @@ class QuestionIndexViewTests(TestCase):
         """
         olderQuestion = createQuestion(question_text="Past question 1.", days=-30)
         oldQuestion = createQuestion(question_text="Past question 2.", days=-5)
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse("polls:index"))
         self.assertQuerysetEqual(
-            response.context['questions'],
+            response.context["questions"],
             [oldQuestion, olderQuestion],
         )
 
@@ -125,8 +118,8 @@ class QuestionDetailViewTests(TestCase):
         The detail view of a question with a pub_date in the future
         returns a 404 not found.
         """
-        futureQuestion = createQuestion(question_text='Future question.', days=5)
-        url = reverse('polls:detail', args=(futureQuestion.id,))
+        futureQuestion = createQuestion(question_text="Future question.", days=5)
+        url = reverse("polls:detail", args=(futureQuestion.id,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
@@ -135,7 +128,7 @@ class QuestionDetailViewTests(TestCase):
         The detail view of a question with a pub_date in the past
         displays the question's text.
         """
-        pastQuestion = createQuestion(question_text='Past Question.', days=-5)
-        url = reverse('polls:detail', args=(pastQuestion.id,))
+        pastQuestion = createQuestion(question_text="Past Question.", days=-5)
+        url = reverse("polls:detail", args=(pastQuestion.id,))
         response = self.client.get(url)
         self.assertContains(response, pastQuestion.question_text)

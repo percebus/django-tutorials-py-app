@@ -21,13 +21,10 @@ def create_post(hooks):
 
         cards = []
         for response in responses.values():
-            cards += response.get('cards', [])
+            cards += response.get("cards", [])
 
-        body = {'cards': cards}
+        body = {"cards": cards}
         oLogger.info(response)
-        return JsonResponse(
-            body,
-            status=200,
-            content_type='application/json')
+        return JsonResponse(body, status=200, content_type="application/json")
 
     return _multi_post

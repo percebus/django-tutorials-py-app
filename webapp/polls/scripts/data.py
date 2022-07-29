@@ -23,15 +23,15 @@ oQuestion.save()
 
 # FK INSERT
 oQuestion.choice_set.all()  # <QuerySet []>
-oQuestion.choice_set.create(choice_text='Not much', votes=0)
-oQuestion.choice_set.create(choice_text='The sky', votes=0)
-oQuestion.choice_set.create(choice_text='Just hacking again', votes=0)
+oQuestion.choice_set.create(choice_text="Not much", votes=0)
+oQuestion.choice_set.create(choice_text="The sky", votes=0)
+oQuestion.choice_set.create(choice_text="Just hacking again", votes=0)
 # NOTE: No .save()
 oQuestion.choice_set.count()  # 3
 oQuestion.choice_set.all()
 
 # SELECT WHERE choice_text LIKE "Just hacking*"
-oChoice = oQuestion.choice_set.filter(choice_text__startswith='Just hacking')
+oChoice = oQuestion.choice_set.filter(choice_text__startswith="Just hacking")
 oChoice.delete()
 oQuestion.choice_set.count()  # 2
 oQuestion.choice_set.all()
@@ -46,7 +46,7 @@ Question.objects.filter(id=1)
 Question.objects.get(pk=1)
 
 # SELECT * WHERE question_text LIKE "What*"
-Question.objects.filter(question_text__startswith='What')
+Question.objects.filter(question_text__startswith="What")
 
 # SELECT * WHERE id=2
 Question.objects.get(id=2)  # "DoesNotExist: Question matching query does not exist."
