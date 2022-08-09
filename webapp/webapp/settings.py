@@ -43,11 +43,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "ninja",
+    "ninja",
     "polls.apps.PollsConfig",
     "api.apps.ApiConfig",
     "cds_services.apps.CdsServicesConfig",
-    # "nindjango.apps.NindjangoConfig", # TODO
+    "nindjango.apps.NindjangoConfig",
 ]
 
 MIDDLEWARE = [
