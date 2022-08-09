@@ -20,6 +20,7 @@ urlpatterns = [
     # path('', include('polls.urls')),  # TODO? or XXX?
     path("polls/", include("polls.urls")),
     path("api/", include("api.urls")),
+    # path("ninja/", include("nindjango.urls")),
     path("cds-services/", include("cds_services.urls")),
     path("admin/", admin.site.urls),
 ]

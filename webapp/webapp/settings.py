@@ -22,32 +22,32 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = bool(os.getenv('DEBUG', False))  # FIXME
-DEBUG = bool(os.getenv("DEBUG", True))  # XXX
+DEBUG = bool(os.getenv("DEBUG") or '1')
 
 LOG_LEVEL = os.getenv("DJANGO_LOG_LEVEL", "INFO")
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")  # NOTE: key not present on docker build!
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 if DEBUG:
     pprint("DJANGO_SECRET_KEY: %s" % SECRET_KEY)
 
-# ALLOWED_HOSTS = ['0.0.0.0']  # TODO? or XXX?
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    "api.apps.ApiConfig",  # webapp/api/
-    "polls.apps.PollsConfig",  # webapp/polls/
-    "cds_services.apps.CdsServicesConfig",  # webapp/cds_services/
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # "ninja",
+    "polls.apps.PollsConfig",
+    "api.apps.ApiConfig",
+    "cds_services.apps.CdsServicesConfig",
+    # "nindjango.apps.NindjangoConfig", # TODO
 ]
 
 MIDDLEWARE = [
