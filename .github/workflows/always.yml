@@ -95,7 +95,7 @@ jobs:
 
   codeQL:
 #   if: github.ref == 'refs/heads/main' # TODO?
-    needs: test
+#   needs: test # XXX?
     runs-on: ubuntu-latest
     permissions:
       actions: read
