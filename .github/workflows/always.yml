@@ -9,7 +9,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     env:
-      DEBUG: ${{ secrets.DEBUG }}
+      DEBUG: 1
       POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
@@ -95,7 +95,7 @@ jobs:
 
   codeQL:
 #   if: github.ref == 'refs/heads/main' # TODO?
-    needs: test
+#   needs: test # XXX?
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -105,7 +105,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['python']
+        language: ['python', 'javascript']
 
     name: 'CodeQL: ${{ matrix.language }}'
     steps:
