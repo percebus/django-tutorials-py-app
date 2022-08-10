@@ -9,5 +9,5 @@ def hello(request):
 
 
 @api.get("/hello/{name}")
-def hello(request, name: str):
+def hello_name(request, name: str):
     return f"Hello {name}"
