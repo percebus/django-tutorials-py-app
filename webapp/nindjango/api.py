@@ -7,6 +7,7 @@ api = NinjaAPI()
 def hello(request):
     return "Hello world"
 
+
 @api.get("/hello/{name}")
 def hello(request, name: str):
     return f"Hello {name}"
