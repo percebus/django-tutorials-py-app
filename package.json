@@ -46,7 +46,7 @@
     "docker:containers:exited:rm": "docker ps --all --filter status=exited | tail -n +2 | awk '{print $1}' | xargs docker rm",
     "docker:containers:rm": "docker rm $(docker ps -a -q)",
     "docker:clean": "npm run docker:containers:exited:rm && npm run docker:images:rm",
-    "docker:compose": "docker-compose",
+    "docker:compose": "docker compose",
     "docker:compose:build": "npm run docker:compose -- build",
     "docker:compose:up": "npm run docker:compose -- up",
     "python:manage": "python webapp/manage.py",
