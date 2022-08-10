@@ -23,6 +23,8 @@
     "grunt:htmllint": "npm run grunt -- htmllint",
     "grunt:csslint": "npm run grunt -- csslint",
     "flake8": "python -m flake8 webapp",
+    "black": "python -m black webapp",
+    "postblack": "npm run flake8",
     "dockerlint": "dockerlint Dockerfile",
     "tsqllint": "tsqllint --verbose --fix ./webapp/",
     "lint:json": "npm run grunt:jsonlint",
@@ -30,7 +32,7 @@
     "lint:js": "npm run standard",
     "lint:html": "npm run grunt:htmllint",
     "lint:css": "npm run grunt:csslint",
-    "lint:py": "npm run flake8",
+    "lint:py": "npm run black",
     "lint:T-SQL": "npm run tsqllint",
     "lint:docker": "npm run dockerlint",
     "lint": "npm run lint:js && npm run lint:json && npm run lint:yaml && npm run lint:py && npm run lint:html && npm run lint:css && npm run lint:docker",
@@ -61,9 +63,7 @@
     "python:manage:createsuperuser": "npm run python:manage -- createsuperuser",
     "test": "npm run lint",
     "test:intg": "npm run python:manage:test:all",
-    "start": "npm run python:manage:runserver",
-    "prestart:docker": "npm run docker:compose:build",
-    "start:docker": "npm run docker:compose:up",
+    "start": "npm run docker:compose:up",
     "browser": "open-cli http://localhost:8000"
   },
   "repository": {
