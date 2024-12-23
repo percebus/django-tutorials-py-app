@@ -10,4 +10,4 @@ permissions:
 jobs:
   pull_request:
     name: percebus
-    uses: percebus/github-workflows/.github/workflows/pull_request.yml@main
+    uses: percebus/commons/.github/workflows/pull_request.yml@main
